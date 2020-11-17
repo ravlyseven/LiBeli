@@ -24,3 +24,5 @@ Route::get('/dashboard', 'HomeController@dashboard');
 Route::resource('updates', 'UpdatesController');
 // Route::delete('/updates/{update}', 'UpdatesController@destroy');
 
+Route::get('/profiles', 'MainController@show');
+
