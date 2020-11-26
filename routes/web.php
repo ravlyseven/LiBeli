@@ -16,13 +16,19 @@ Route::get('/', 'MainController@index');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/dashboard', 'HomeController@dashboard');
 
-// Route::get('/updates', 'UpdatesController@index');
-// Route::get('/updates/create', 'UpdatesController@create');
-// Route::post('/updates', 'UpdatesController@store');
 Route::resource('updates', 'UpdatesController');
-// Route::delete('/updates/{update}', 'UpdatesController@destroy');
+Route::resource('events', 'EventsController');
 
 Route::get('/profiles', 'MainController@show');
 
+
+Route::group(['middleware' => ['auth', 'auth.admin']], function () {
+    Route::get('/dashboard', 'HomeController@dashboard');
+});
+
+
+Route::resource('products', 'ProductsController');
+
+// Route::group(['middleware' => ['auth', 'auth.penjual']], function () {
+// });

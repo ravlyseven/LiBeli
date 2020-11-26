@@ -5,9 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 //use App\model untuk connect ke model
-use App\Update;
+use App\Event;
 
-class UpdatesController extends Controller
+class EventsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +16,8 @@ class UpdatesController extends Controller
      */
     public function index()
     {
-        $updates = Update::all();
-        return view('updates/index', ['updates' => $updates]);
+        $events = Event::all();
+        return view('events/index', ['events' => $events]);
     }
 
     /**
@@ -27,7 +27,7 @@ class UpdatesController extends Controller
      */
     public function create()
     {
-        return view('updates/create');
+        return view('events/create');
     }
 
     /**
@@ -38,8 +38,8 @@ class UpdatesController extends Controller
      */
     public function store(Request $request)
     {
-        Update::create($request->all());
-        return redirect('/updates');
+        Event::create($request->all());
+        return redirect('/events');
     }
 
     /**
@@ -48,9 +48,9 @@ class UpdatesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Update $update)
+    public function show(Event $event)
     {
-        
+        return view('events/show', compact('event'));
     }
 
     /**
@@ -59,9 +59,9 @@ class UpdatesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Update $update)
+    public function edit(Event $event)
     {
-        return view('updates/edit', compact('update'));
+        return view('events/edit', compact('event'));
     }
 
     /**
@@ -73,11 +73,11 @@ class UpdatesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $data = Update::findOrFail($id);
+        $data = Event::findOrFail($id);
         $data->title = $request->get('title');
         $data->content = $request->get('content');
         $data->save();
-        return redirect('updates');
+        return redirect('events');
     }
 
     /**
@@ -86,10 +86,9 @@ class UpdatesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-
-    public function destroy(Update $update)
+    public function destroy(Event $event)
     {
-        Update::destroy($update->id);
-        return redirect('/updates')->with('status', 'Data Berhasil Dihapus');
+        Event::destroy($event->id);
+        return redirect('/events')->with('status', 'Data Berhasil Dihapus');
     }
 }

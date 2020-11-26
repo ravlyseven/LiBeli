@@ -6,7 +6,7 @@
 
 @section('content')
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-6 ml-3">
             <div class="main-card mb-3 card">
                 <div class="card-body">
                     <h5 class="card-title">Profile Information</h5>
@@ -20,7 +20,8 @@
                             <label for="exampleEmail" class="">Email</label>
                             <input name="email" id="email" value="{{ Auth::user()->email }}" type="email" class="form-control ">
                         </div>
-                            <button class="mt-1 btn btn-primary" type="submit">Save</button>
+                        <!-- <button class="mt-1 btn btn-primary" type="submit">Save</button> -->
+                        <a href="/" class="mt-1 btn btn-primary" type="submit">Save</a>
                     </form>
                 </div>
             </div>

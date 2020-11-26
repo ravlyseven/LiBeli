@@ -5,9 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 //use App\model untuk connect ke model
-use App\Update;
+use App\Product;
 
-class UpdatesController extends Controller
+class ProductsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +16,8 @@ class UpdatesController extends Controller
      */
     public function index()
     {
-        $updates = Update::all();
-        return view('updates/index', ['updates' => $updates]);
+        $products = Product::all();
+        return view('products/index', ['products' => $products]);
     }
 
     /**
@@ -27,7 +27,7 @@ class UpdatesController extends Controller
      */
     public function create()
     {
-        return view('updates/create');
+        return view('products/create');
     }
 
     /**
@@ -38,8 +38,8 @@ class UpdatesController extends Controller
      */
     public function store(Request $request)
     {
-        Update::create($request->all());
-        return redirect('/updates');
+        Product::create($request->all());
+        return redirect('/products');
     }
 
     /**
@@ -48,9 +48,10 @@ class UpdatesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Update $update)
+    public function show(Product $product)
     {
-        
+        return view('products/show', compact('product'));
+        //return view('lokasi', compact('nama_model'));
     }
 
     /**
@@ -59,9 +60,9 @@ class UpdatesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Update $update)
+    public function edit(Product $product)
     {
-        return view('updates/edit', compact('update'));
+        return view ('products/edit', compact('product'));
     }
 
     /**
@@ -73,11 +74,13 @@ class UpdatesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $data = Update::findOrFail($id);
-        $data->title = $request->get('title');
-        $data->content = $request->get('content');
+        $data = Product::findOrFail($id);
+        $data->name = $request->get('name');
+        $data->price = $request->get('price');
+        $data->description = $request->get('description');
+        $data->photo = $request->file('photo')->store('public');
         $data->save();
-        return redirect('updates');
+        return redirect('products');
     }
 
     /**
@@ -86,10 +89,9 @@ class UpdatesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-
-    public function destroy(Update $update)
+    public function destroy(Product $product)
     {
-        Update::destroy($update->id);
-        return redirect('/updates')->with('status', 'Data Berhasil Dihapus');
+        Product::destroy($product->id);
+        return redirect('/products')->with('status', 'Data Berhasil Dihapus');
     }
 }
