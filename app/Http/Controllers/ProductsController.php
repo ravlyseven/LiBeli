@@ -78,7 +78,11 @@ class ProductsController extends Controller
         $data->name = $request->get('name');
         $data->price = $request->get('price');
         $data->description = $request->get('description');
-        $data->photo = $request->file('photo')->store('public');
+        if($request->hasFile('photo'))
+        {
+            $data->photo = $request->file('photo')->move('images/', $request->file('photo')->getClientOriginalName());
+            $data->photo = $request->file('photo')->getClientOriginalName();
+        }
         $data->save();
         return redirect('products');
     }

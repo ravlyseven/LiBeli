@@ -18,8 +18,8 @@
           <div class="card-body p-0">
             <!-- Nested Row within Card Body -->
             <div class="row">
-              <div class="col-lg-6 d-none d-lg-block bg-password-image">
-                <img class="img-thumbnail" src="{{$product->photo}}">
+              <div class="col-lg-6 d-none d-lg-block bg-dark">
+                <img class="rounded mx-auto d-block mt-4" style="height:80%; width:90%" src="{{ asset('images/'.$product->photo) }}">
               </div>
               <div class="col-lg-6">
                 <div class="p-5">
