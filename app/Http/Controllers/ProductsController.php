@@ -38,8 +38,17 @@ class ProductsController extends Controller
      */
     public function store(Request $request)
     {
-        Product::create($request->all());
-        return redirect('/products');
+        $data = new Product();
+        $data->name = $request->get('name');
+        $data->price = $request->get('price');
+        $data->description = $request->get('description');
+        if($request->hasFile('photo'))
+        {
+            $photo = $request->file('photo')->store('products', 'public');
+            $data->photo = $photo;
+        }
+        $data->save();
+        return redirect('products');
     }
 
     /**
@@ -80,8 +89,11 @@ class ProductsController extends Controller
         $data->description = $request->get('description');
         if($request->hasFile('photo'))
         {
-            $data->photo = $request->file('photo')->move('images/', $request->file('photo')->getClientOriginalName());
-            $data->photo = $request->file('photo')->getClientOriginalName();
+            if ($data->photo && file_exists(storage_path('app/public/'.$data->photo))) {
+                Storage::delete('public', $data->photo);
+            }
+            $photo = $request->file('photo')->store('products', 'public');
+            $data->photo = $photo;
         }
         $data->save();
         return redirect('products');
@@ -96,6 +108,7 @@ class ProductsController extends Controller
     public function destroy(Product $product)
     {
         Product::destroy($product->id);
+        Storage::delete('public', $product->photo);
         return redirect('/products')->with('status', 'Data Berhasil Dihapus');
     }
 }

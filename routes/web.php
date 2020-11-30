@@ -20,7 +20,10 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('updates', 'UpdatesController');
 Route::resource('events', 'EventsController');
 
-Route::get('/profiles', 'MainController@show');
+Route::get('/profiles', 'UsersController@show');
+Route::post('/profile', 'UsersController@update');
+Route::post('/profile_password', 'UsersController@update_password');
+
 
 
 Route::group(['middleware' => ['auth', 'auth.admin']], function () {
