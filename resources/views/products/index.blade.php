@@ -1,7 +1,7 @@
 @extends('layouts/sidebar')
 
 @section('title')
-<title>Products</title>
+<title>Libeli - Products</title>
 @endsection
 
 @section('content')
@@ -17,12 +17,12 @@
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
                             <div class="col-auto">
-                                <img class="img-thumbnail" src="{{ asset('images/'.$product->photo) }}">
+                                <img class="img-thumbnail" src="{{ asset('storage/'.$product->photo) }}">
                             </div>
                             <div class="col mr-2">
                                 <a href="products/{{ $product->id }}">
                                 <div class="h5 mb-1 text-s font-weight-bold text-primary">{{$product->name}}</div>
-                                <div class="h6 mb-0 font-weight-bold text-gray-800">Rp. {!! Str::words($product->price) !!}</div>
+                                <div class="h6 mb-0 font-weight-bold text-gray-800" align="left">Rp. {{ number_format($product->price) }}</div>
                                 </a>
 
                                 @if(\Auth::user()->hasAnyRole('penjual'))

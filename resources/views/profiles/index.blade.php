@@ -1,7 +1,7 @@
 @extends('layouts/sidebar')
 
 @section('title')
-<title>Updates</title>
+<title>Libeli - Profile</title>
 @endsection
 
 @section('content')

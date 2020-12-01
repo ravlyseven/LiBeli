@@ -1,7 +1,7 @@
 @extends('layouts/sidebar')
 
 @section('title')
-<title>Selamat Datang di LiBeli</title>
+<title>LiBeli</title>
 @endsection
 
 @section('content')

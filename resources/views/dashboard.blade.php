@@ -1,7 +1,7 @@
 @extends('layouts/sidebar')
 
 @section('title')
-<title>Dashboard</title>
+<title>Libeli - Dashboard</title>
 @endsection
 
 @section('content')

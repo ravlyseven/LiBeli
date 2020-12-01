@@ -19,10 +19,18 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('updates', 'UpdatesController');
 Route::resource('events', 'EventsController');
+Route::resource('products', 'ProductsController');
 
 Route::get('/profiles', 'UsersController@show');
 Route::post('/profile', 'UsersController@update');
 Route::post('/profile_password', 'UsersController@update_password');
+
+Route::get('orders', 'OrdersController@index');
+Route::post('orders/{id}', 'OrdersController@pesan');
+Route::delete('orders/{id}', 'OrdersController@delete');
+
+
+Route::get('carts', 'CartsController@index');
 
 
 
@@ -31,7 +39,6 @@ Route::group(['middleware' => ['auth', 'auth.admin']], function () {
 });
 
 
-Route::resource('products', 'ProductsController');
 
 // Route::group(['middleware' => ['auth', 'auth.penjual']], function () {
 // });

@@ -50,7 +50,7 @@ class UpdatesController extends Controller
      */
     public function show(Update $update)
     {
-        
+        return view('updates/show', compact('update'));
     }
 
     /**

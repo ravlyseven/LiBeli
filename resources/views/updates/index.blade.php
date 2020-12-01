@@ -1,7 +1,7 @@
 @extends('layouts/sidebar')
 
 @section('title')
-<title>Updates</title>
+<title>Libeli - News</title>
 @endsection
 
 @section('content')
@@ -17,12 +17,12 @@
                     <div class="card-body">
                         <h5 class="card-title">{{$update->title}}</h5>
                         <p class="card-text">{!! Str::words($update->content) !!}
-                        <!-- <a href="#">selengkapnya</a> -->
+                        <a href="updates/{{ $update->id }}">selengkapnya</a>
                         </p>
 
                         @if(\Auth::user()->hasAnyRole('admin'))
                         <a class="btn btn-primary" href="updates/{{ $update->id }}/edit" class="card-link">Ubah</a>
-                        <!-- <form action="{{ route('updates.destroy',$update->id) }}" method="post" class="d-inline"> -->
+                        
                         <form action="updates/{{ $update->id }}" method="post" class="d-inline">
                             @method('delete')
                             @csrf

@@ -1,14 +1,14 @@
 @extends('layouts/sidebar')
 
 @section('title')
-<title>Update Updates</title>
+<title>Libeli - Update News</title>
 @endsection
 
 @section('content')
 <div class="container">
 		<div class="row">
 			<div class="col-10">
-				<h1 class="mt-3">Update Data Updates</h1>
+				<h1 class="mt-3">Update Data News</h1>
                 
                 <form method="post" action="/updates/{{ $update->id }}">
                 @method('PUT')

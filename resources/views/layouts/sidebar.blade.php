@@ -75,7 +75,8 @@
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Products :</h6>
             <a class="collapse-item" href="{{ url('products') }}">Produk Pasar</a>
-            <a class="collapse-item" href="">Pesanan</a>
+            <a class="collapse-item" href="{{ url('orders') }}">Pesanan</a>
+            <a class="collapse-item" href="{{ url('carts') }}">Carts</a>
           </div>
         </div>
         
@@ -84,6 +85,11 @@
 
       <!-- Divider -->
       <hr class="sidebar-divider">
+
+      <!-- close Button -->
+      <div class="text-center d-none d-md-inline">
+        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+      </div>
 
       
 
@@ -118,6 +124,18 @@
 
           <!-- Topbar Navbar -->
           <ul class="navbar-nav ml-auto">
+            
+            <!-- Keranjang Belanja -->
+            <li class="nav-item">
+              <?php
+                $orders = \App\Order::where('user_id', Auth::user()->id)->where('status',0)->first();
+                $notif = \App\Order_Detail::where('order_id', $orders->id)->count();
+              ?>
+              <a class="nav-link" href="{{ url('orders') }}">
+                <i class="fa fa-shopping-cart"></i>
+                <span class="badge badge-danger badge-counter">{{ $notif }}</span>
+              </a>
+            </li>
 
             <!-- Nav Item - Search Dropdown (Visible Only XS) -->
             <li class="nav-item dropdown no-arrow d-sm-none">
