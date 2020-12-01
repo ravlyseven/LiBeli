@@ -129,11 +129,16 @@
             <li class="nav-item">
               <?php
                 $orders = \App\Order::where('user_id', Auth::user()->id)->where('status',0)->first();
-                $notif = \App\Order_Detail::where('order_id', $orders->id)->count();
+                if($orders != null)
+                {
+                  $notif = \App\Order_Detail::where('order_id', $orders->id)->count();
+                }
               ?>
               <a class="nav-link" href="{{ url('orders') }}">
                 <i class="fa fa-shopping-cart"></i>
-                <span class="badge badge-danger badge-counter">{{ $notif }}</span>
+                @if($orders != null)
+                  <span class="badge badge-danger badge-counter">{{ $notif }}</span>
+                @endif
               </a>
             </li>
 

@@ -11,6 +11,7 @@
     <div class="card-header py-3">
         <h6 class="m-0 font-weight-bold text-primary">Keranjang Belanja</h6>
     </div>
+    @if($orders != null)            
     <div class="card-body">
         <div class="table-responsive">
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -25,7 +26,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                <?php $no = 1; ?>
+                    <?php $no = 1; ?>
                     @foreach($order_details as $order_detail)
                     <tr>
                         <td>{{ $no++ }}</td>
@@ -45,11 +46,17 @@
                     <tr>
                         <td colspan="4" align="right">Total Harga</td>
                         <td align="left">Rp. {{ number_format($orders->total_price) }}</td>
+                        <td>
+                            <a href="{{ url('checkout') }}" class="btn btn-success">
+                                <i class="fa fa-shopping-cart"></i>Checkout
+                            </a>
+                        </td>
                     </tr>
                 </tbody>
             </table>    
         </div>
     </div>
+    @endif
 </div>
 
 @endsection

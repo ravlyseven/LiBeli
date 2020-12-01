@@ -16,8 +16,12 @@ class OrdersController extends Controller
     {
         
         $orders = Order::where('user_id', Auth::user()->id)->where('status',0)->first();
-        $order_details = Order_Detail::where('order_id', $orders->id)->get();
-        return view('orders/index', compact('orders', 'order_details'));
+        if($orders != null)
+        {
+            $order_details = Order_Detail::where('order_id', $orders->id)->get();
+            return view('orders/index', compact('orders', 'order_details'));
+        }
+        return view('orders/index', compact('orders'));
     }
 
     public function pesan(Request $request, $id)
@@ -79,6 +83,15 @@ class OrdersController extends Controller
         $order->update();
 
         $order_detail->delete();
+        return redirect('orders');
+    }
+
+    public function checkout()
+    {
+        $order = Order::where('user_id', Auth::user()->id)->where('status',0)->first();
+        $order->status = 1;
+        $order->update();
+
         return redirect('orders');
     }
 }

@@ -28,6 +28,7 @@ Route::post('/profile_password', 'UsersController@update_password');
 Route::get('orders', 'OrdersController@index');
 Route::post('orders/{id}', 'OrdersController@pesan');
 Route::delete('orders/{id}', 'OrdersController@delete');
+Route::get('checkout', 'OrdersController@checkout');
 
 
 Route::get('carts', 'CartsController@index');
