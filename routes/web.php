@@ -30,8 +30,9 @@ Route::post('orders/{id}', 'OrdersController@pesan');
 Route::delete('orders/{id}', 'OrdersController@delete');
 Route::get('checkout', 'OrdersController@checkout');
 
-
-Route::get('carts', 'CartsController@index');
+Route::get('history', 'HistoryController@index');
+Route::get('history/{id}', 'HistoryController@show');
+Route::delete('history/{id}', 'HistoryController@delete');
 
 
 

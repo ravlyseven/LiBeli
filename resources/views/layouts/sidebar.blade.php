@@ -76,7 +76,7 @@
             <h6 class="collapse-header">Products :</h6>
             <a class="collapse-item" href="{{ url('products') }}">Produk Pasar</a>
             <a class="collapse-item" href="{{ url('orders') }}">Pesanan</a>
-            <a class="collapse-item" href="{{ url('carts') }}">Carts</a>
+            <a class="collapse-item" href="{{ url('history') }}">Riwayat Pemesanan</a>
           </div>
         </div>
         

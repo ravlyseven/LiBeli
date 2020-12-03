@@ -108,7 +108,7 @@ class ProductsController extends Controller
     public function destroy(Product $product)
     {
         Product::destroy($product->id);
-        Storage::delete('public', $product->photo);
-        return redirect('/products')->with('status', 'Data Berhasil Dihapus');
+        \Storage::delete('public', $product->photo);
+        return redirect('/products');
     }
 }

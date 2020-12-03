@@ -14,7 +14,6 @@ class OrdersController extends Controller
 {
     public function index()
     {
-        
         $orders = Order::where('user_id', Auth::user()->id)->where('status',0)->first();
         if($orders != null)
         {
@@ -37,10 +36,9 @@ class OrdersController extends Controller
             $orders->user_id = Auth::user()->id;
             $orders->status = 0;
             $orders->total_price = 0;
+            $orders->code = mt_rand(0, 999);
             $orders->save();
         }
-
-        
 
         // simpan ke database order_details
         $new_orders = Order::where('user_id', Auth::user()->id)->where('status',0)->first();
@@ -92,6 +90,6 @@ class OrdersController extends Controller
         $order->status = 1;
         $order->update();
 
-        return redirect('orders');
+        return redirect('history');
     }
 }
