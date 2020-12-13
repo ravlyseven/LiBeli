@@ -19,6 +19,7 @@
                     <tr>
                         <th>No</th>
                         <th>Tanggal</th>
+                        <th>Nama Pelanggan</th>
                         <th>Total Harga</th>
                         <th>Status</th>
                         <th>Detail</th>
@@ -31,12 +32,19 @@
                     <tr>
                         <td>{{ $no++ }}</td>
                         <td>{{ $order->updated_at }}</td>
+                        <td>{{ $order->user->name }}</td>
                         <td align="left">Rp. {{ number_format($order->total_price+$order->code) }}</td>
                         <td>
                             @if($order->status == 1)
                             Belum Dibayar
-                            @else
+                            @elseif($order->status == 2)
                             Sudah Dibayar
+                            @elseif($order->status == 3)
+                            Pembayaran Valid
+                            @elseif($order->status == 4)
+                            Barang Dalam Pengiriman
+                            @elseif($order->status == 5)
+                            Selesai
                             @endif
                         </td>
                         <td>
@@ -44,6 +52,7 @@
                             <i class="fa fa-info mr-1"></i>Detail</a>
                         </td>
                     </tr>
+                    
                     @endforeach
                 </tbody>
 

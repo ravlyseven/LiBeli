@@ -46,6 +46,9 @@
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
       </li>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider my-0">
       @endif
       <li class="nav-item">
         <a class="nav-link" href="{{ url('home') }}">
@@ -64,6 +67,9 @@
       </li>
       
       @if(\Auth::user()->hasAnyRole('penjual'))
+      <!-- Divider -->
+      <hr class="sidebar-divider my-0">
+
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
@@ -73,8 +79,7 @@
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Products :</h6>
-            <a class="collapse-item" href="{{ url('products') }}">Produk Pasar</a>
-            <a class="collapse-item" href="{{ url('orders') }}">Pesanan</a>
+            <a class="collapse-item" href="{{ url('products') }}">Produk Saya</a>
             <a class="collapse-item" href="{{ url('history') }}">Riwayat Pemesanan</a>
           </div>
         </div>
@@ -153,7 +158,7 @@
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="{{ url('profiles') }}">
+                <a class="dropdown-item" href="{{ url('profile') }}">
                   <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                   Profile
                 </a>
@@ -184,13 +189,7 @@
       <!-- End of Main Content -->
 
       <!-- Footer -->
-      <footer class="sticky-footer bg-white">
-        <div class="container my-auto">
-          <div class="copyright text-center my-auto">
-            <span>Copyright &copy; Your Website 2020</span>
-          </div>
-        </div>
-      </footer>
+      
       <!-- End of Footer -->
 
     </div>
@@ -239,6 +238,9 @@
 
   <!-- Custom scripts for all pages-->
   <script src="{{asset('asset/js/sb-admin-2.min.js')}}"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+  @include('sweet::alert')
 
 </body>
 

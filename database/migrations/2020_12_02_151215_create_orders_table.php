@@ -19,6 +19,7 @@ class CreateOrdersTable extends Migration
             $table->string('status');
             $table->integer('code');
             $table->integer('total_price');
+            $table->string('photo')->nullable();
             $table->timestamps();
         });
     }

@@ -20,12 +20,24 @@
             <div class="row">
               <div class="col-lg-6 d-none d-lg-block bg-dark">
                 <img class="rounded mx-4 my-4" style="width:90%" src="{{ asset('storage/'.$product->photo) }}">
+                <div class="card-body">
+                  <h5 class="card-title text-light">Informasi Toko</h5>
+                  <div class="position-relative form-group">
+                    <div class="h5 mb-1 text-s font-weight-bold text-light">Nama Toko : 
+                      <a href="{{ url('profile') }}/{{ $product->user_id }}" class="h5 mb-1 text-s font-weight-bold text-light">
+                      {{$product->user->name}}
+                    </a>
+                    </div>
+                  </div>
+                </div>
               </div>
+
               <div class="col-lg-6">
                 <div class="p-5">
                   <div class="text-center">
                     <h1 class="h3 font-weight-bold text-gray-900 mb-2">{{$product->name}}</h1>
                     <h1 class="h4 mb-0 font-weight-bold text-gray-800">Rp. {{ number_format($product->price) }}</h1>
+                    <h1 class="h4 mb-0 font-weight-bold text-gray-800">Stok : {{ $product->stock }}</h1>
                     <hr>
                     <h1 class="h4 mb-0 font-weight-bold text-gray-800">Deskripsi Produk</h1>
                     <p class="mb-4">{{$product->description}}</p>
@@ -33,11 +45,17 @@
                     <p>Masukkan Jumlah Pesanan :</p>
                     <form action="{{ url('orders') }}/{{ $product->id }}" method="post" class="d-inline">
                       @csrf
-                      <input type="text" name="total_order" class="form-control mb-3">
+                      <input type="number" name="total_order" class="form-control mb-3">
                       <button type="submit" class="btn btn-warning">
                       <i class="fa fa-shopping-cart"></i>Tambah Ke Keranjang</button>
                     </form>
+
+                    @if(\Auth::user()->hasAnyRole('penjual'))
                     <a class="btn btn-primary" href="{{ url('products') }}">Kembali</a>
+                    @else
+                    <a class="btn btn-primary" href="{{ url('home') }}">Kembali</a>
+                    @endif
+                  
                   </div>
                 </div>
               </div>

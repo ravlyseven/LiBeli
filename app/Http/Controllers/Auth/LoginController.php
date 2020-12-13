@@ -34,6 +34,7 @@ class LoginController extends Controller
      */
     public function __construct()
     {
+        alert()->basic('Selamat Datang di LiBeli', 'Halo');
         $this->middleware('guest')->except('logout');
     }
 }

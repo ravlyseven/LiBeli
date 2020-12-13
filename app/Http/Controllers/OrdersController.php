@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Product;
 use App\Order;
 use App\Order_Detail;
+use UxWeb\SweetAlert\SweetAlert;
 
 
 
@@ -25,8 +26,15 @@ class OrdersController extends Controller
 
     public function pesan(Request $request, $id)
     {
-        $products = Product::where('id', $id)->first();
+        $product = Product::where('id', $id)->first();
         
+        // cek ketersediaan jumlah stok
+        if ($request->total_order > $product->stock) 
+        {
+            alert()->warning('Jumlah stok melebihi ketersediaan', 'Warning !!!');
+            return redirect('products/'.$id);
+        }
+
         // cek validasi
         $orders_check = Order::where('user_id', Auth::user()->id)->where('status',0)->first();
         if($orders_check == null) 
@@ -44,32 +52,32 @@ class OrdersController extends Controller
         $new_orders = Order::where('user_id', Auth::user()->id)->where('status',0)->first();
 
         // cek order detail apa sudah ada
-        $order_details_check = Order_Detail::where('product_id', $products->id)->where('order_id', $new_orders->id)->first();
+        $order_details_check = Order_Detail::where('product_id', $product->id)->where('order_id', $new_orders->id)->first();
         if($order_details_check == null)
         {
             $order_details = new Order_Detail;
-            $order_details->product_id = $products->id;
+            $order_details->product_id = $product->id;
             $order_details->order_id = $new_orders->id;
             $order_details->quantity = $request->total_order;
-            $order_details->total_price = $products->price*$order_details->quantity;
+            $order_details->total_price = $product->price*$order_details->quantity;
             $order_details->save();
         }
         else
         {
-            $order_details = Order_Detail::where('product_id', $products->id)->where('order_id', $new_orders->id)->first();
+            $order_details = Order_Detail::where('product_id', $product->id)->where('order_id', $new_orders->id)->first();
 
             $order_details->quantity = $order_details->quantity+$request->total_order;
-            $order_details->total_price = $products->price*$order_details->quantity;
+            $order_details->total_price = $product->price*$order_details->quantity;
             $order_details->update();
         }
 
         // jumlah total harga
         $orders = Order::where('user_id', Auth::user()->id)->where('status',0)->first();
-        $orders->total_price = $orders->total_price+$products->price*$request->total_order;
+        $orders->total_price = $orders->total_price+$product->price*$request->total_order;
         $orders->update();
 
 
-        return redirect('orders');
+        return redirect()->back();
     }
     
     public function delete($id)
@@ -89,6 +97,14 @@ class OrdersController extends Controller
         $order = Order::where('user_id', Auth::user()->id)->where('status',0)->first();
         $order->status = 1;
         $order->update();
+
+        $order_details = Order_Detail::where('order_id', $order->id)->get();
+        foreach ($order_details as $order_detail)
+        {
+            $product = Product::where('id', $order_detail->product_id)->first();
+            $product->stock = $product->stock-$order_detail->quantity;
+            $product->update();
+        }
 
         return redirect('history');
     }

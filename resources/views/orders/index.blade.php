@@ -18,6 +18,7 @@
                 <thead class="bg-gradient-light">
                     <tr>
                         <th>No</th>
+                        <th>Gambar</th>
                         <th>Nama Produk</th>
                         <th>Jumlah</th>
                         <th>Harga</th>
@@ -31,6 +32,9 @@
                     @foreach($order_details as $order_detail)
                     <tr>
                         <td>{{ $no++ }}</td>
+                        <td>
+                            <img width="100px;" src="{{ asset('storage/'.$order_detail->product->photo) }}">
+                        </td>
                         <td>{{ $order_detail->product->name }}</td>
                         <td>{{ $order_detail->quantity }}</td>
                         <td align="left">Rp. {{ number_format($order_detail->product->price) }}</td>
@@ -46,7 +50,7 @@
                     @endforeach
 
                     <tr>
-                        <td colspan="4" align="right">Total Harga</td>
+                        <td colspan="5" align="right">Total Harga</td>
                         <td align="left">Rp. {{ number_format($orders->total_price) }}</td>
                         <td>
                             <a href="{{ url('checkout') }}" class="btn btn-success">

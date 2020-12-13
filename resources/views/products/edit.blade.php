@@ -19,7 +19,11 @@
                     </div>
                     <div class="form-group">
                         <label for="price">Harga Produk</label>
-                        <input type="text" class="form-control" id="price" value="{{$product->price}}" name="price">
+                        <input type="number" class="form-control" id="price" value="{{$product->price}}" name="price">
+                    </div>
+                    <div class="form-group">
+                        <label for="stock">Stok Produk</label>
+                        <input type="number" class="form-control" id="stock" value="{{$product->stock}}" name="stock">
                     </div>
                     <div class="form-group">
                         <label for="photo">Foto Produk</label>
