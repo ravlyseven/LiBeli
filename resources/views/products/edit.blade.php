@@ -31,7 +31,7 @@
                     </div>
                     <div class="form-group">
                         <label for="description">Deskripsi</label>
-                        <textarea type="text" class="form-control" id="description" value="" name="description" style="height:250px;">{{$product->description}}</textarea>
+                        <textarea type="text" class="form-control" id="description" value="" name="description" style="height: 150px; overflow: auto;">{{$product->description}}</textarea>
                     </div>
                     <button type="submit" class="btn btn-primary">Selesai</button>
                 </form>

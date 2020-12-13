@@ -30,7 +30,7 @@
                     </div>
                     <div class="form-group">
                         <label for="description">Deskripsi</label>
-                        <textarea type="text" class="form-control" id="description" placeholder="description" name="description" style="height:250px;"></textarea>
+                        <textarea type="text" class="form-control" id="description" placeholder="description" name="description" style="height: 150px; overflow: auto;"></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary">Tambah Data</button>
                 </form>

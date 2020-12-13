@@ -40,6 +40,11 @@ Route::get('history/{id}/info', 'HistoryController@info');
 Route::post('history/{id}', 'HistoryController@update');
 Route::post('history/{id}/verifikasi-pembayaran', 'HistoryController@verifikasi');
 
+Route::get('chats', 'ChatsController@index');
+Route::get('chats/{id}', 'ChatsController@show');
+Route::post('chats/{id}', 'ChatsController@send');
+
+
 
 
 Route::group(['middleware' => ['auth', 'auth.admin']], function () {

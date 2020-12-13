@@ -146,6 +146,12 @@
               </a>
             </li>
 
+            <!-- Fitur Chat -->
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url('chats') }}">
+                <i class="fas fa-comments"></i>
+              </a>
+            </li>
            
 
             <div class="topbar-divider d-none d-sm-block"></div>

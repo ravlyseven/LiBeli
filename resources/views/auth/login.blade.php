@@ -11,9 +11,11 @@
                 <div class="card-body p-0">
                     <!-- Nested Row within Card Body -->
                     <div class="row">
+                        
                         <div class="col-lg-6 d-none d-lg-block">
-                            <img class="rounded mx-auto d-block" style="width:100%;" src="{{ asset('images/musaechips.jpg') }}">
+                            <img class="rounded mx-auto d-block" style="width:100%;" src="{{ asset('images/wortel.jpeg') }}">
                         </div>
+
                         <div class="col-lg-6">
                             <div class="p-5">
                                 <div class="text-center">
