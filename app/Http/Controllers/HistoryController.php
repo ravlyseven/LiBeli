@@ -83,4 +83,22 @@ class HistoryController extends Controller
         $order->update();
         return view('history/show', compact('order', 'order_details'));
     }
+    
+    public function pengiriman(Request $request, $id)
+    {
+        $order = Order::where('id', $id)->first();
+        $order_details = Order_Detail::where('order_id', $order->id)->get();
+        $order->status = 4;
+        $order->update();
+        return view('history/show', compact('order', 'order_details'));
+    }
+    
+    public function selesai(Request $request, $id)
+    {
+        $order = Order::where('id', $id)->first();
+        $order_details = Order_Detail::where('order_id', $order->id)->get();
+        $order->status = 5;
+        $order->update();
+        return view('history/show', compact('order', 'order_details'));
+    }
 }

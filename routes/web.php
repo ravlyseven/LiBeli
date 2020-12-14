@@ -12,10 +12,10 @@
 */
 
 Route::get('/', 'MainController@index');
+Route::get('/home', 'HomeController@index')->name('home');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('updates', 'UpdatesController');
 Route::resource('events', 'EventsController');
@@ -39,6 +39,8 @@ Route::delete('history/{id}', 'HistoryController@delete');
 Route::get('history/{id}/info', 'HistoryController@info');
 Route::post('history/{id}', 'HistoryController@update');
 Route::post('history/{id}/verifikasi-pembayaran', 'HistoryController@verifikasi');
+Route::post('history/{id}/verifikasi-pengiriman', 'HistoryController@pengiriman');
+Route::post('history/{id}/verifikasi-selesai', 'HistoryController@selesai');
 
 Route::get('chats', 'ChatsController@index');
 Route::get('chats/{id}', 'ChatsController@show');

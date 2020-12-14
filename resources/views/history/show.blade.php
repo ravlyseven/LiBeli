@@ -99,10 +99,26 @@
             </form>
             @endif
 
-              
-            
             <a class="btn btn-primary" href="{{ url('history') }}/{{ $order->id }}/{{ 'info' }}">Rincian Pembayaran</a>
-        
+
+            @if(\Auth::user()->hasAnyRole('penjual'))
+                @if($order->status == 3)
+                    <form action="{{ url('history') }}/{{ $order->id }}/{{ 'verifikasi-pengiriman' }}" method="post" class="d-inline">
+                    @csrf
+                        <button type="submit" class="btn btn-warning"><i class="fa fa-info mr-1"></i>Verifikasi Pengiriman</button>
+                    </form>
+                @endif  
+            @endif
+
+            @if(\Auth::user()->hasAnyRole('penjual'))
+            @elseif(\Auth::user()->hasAnyRole('admin'))
+            @elseif($order->status == 4)
+                <form action="{{ url('history') }}/{{ $order->id }}/{{ 'verifikasi-selesai' }}" method="post" class="d-inline">
+                @csrf
+                    <button type="submit" class="btn btn-warning"><i class="fa fa-info mr-1"></i>Verifikasi Barang Telah Diterima</button>
+                </form>
+			@endif
+
         </div>
     </div>
     

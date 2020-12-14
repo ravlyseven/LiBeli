@@ -8,7 +8,7 @@ class MainController extends Controller
 {
     public function index()
     {
-        return redirect('login');
+        return redirect('home');
     }
 
    

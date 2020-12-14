@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\Chat;
+use UxWeb\SweetAlert\SweetAlert;
 
 class ChatsController extends Controller
 {
@@ -30,28 +31,37 @@ class ChatsController extends Controller
     
     public function send(Request $request, $id)
     {
-        $users = User::all();
-        $user1 = User::where('id', Auth::user()->id)->first();
-        $user2 = User::where('id', $id)->first();
+        if($request->text == null)
+        {
+            alert()->warning('Form data pesan tidak boleh kosong', 'Warning !!!');
+            return redirect()->back();
+        }
 
-        $chats = Chat::where('user1_id', $user1)->where('user2_id', $user2)->get();
-
-        $chat = new Chat();
-        $chat->user1_id = $user1->id;
-        $chat->user2_id = $user2->id;
-        $chat->status = 1;
-        $chat->text = $request->text;
-
-        $chat->save();       
-        
-        $chat = new Chat();
-        $chat->user1_id = $user2->id;
-        $chat->user2_id = $user1->id;
-        $chat->status = 2;
-        $chat->text = $request->text;
-
-        $chat->save();
-
-        return redirect()->back();
+        else
+        {    
+            $users = User::all();
+            $user1 = User::where('id', Auth::user()->id)->first();
+            $user2 = User::where('id', $id)->first();
+            
+            $chats = Chat::where('user1_id', $user1)->where('user2_id', $user2)->get();
+            
+            $chat = new Chat();
+            $chat->user1_id = $user1->id;
+            $chat->user2_id = $user2->id;
+            $chat->status = 1;
+            $chat->text = $request->text;
+            
+            $chat->save();       
+            
+            $chat = new Chat();
+            $chat->user1_id = $user2->id;
+            $chat->user2_id = $user1->id;
+            $chat->status = 2;
+            $chat->text = $request->text;
+            
+            $chat->save();
+            
+            return redirect()->back();
+        }
     }
 }

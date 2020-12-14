@@ -33,8 +33,4 @@ class HomeController extends Controller
     {
         return view('dashboard');
     }
-    public function news()
-    {
-        return view('news');
-    }
 }

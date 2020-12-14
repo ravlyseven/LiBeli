@@ -47,15 +47,7 @@
                     
 
                 </div>
-
-                <div class="card-footer bg-dark text-light border border-light">
-                    <div class="input-group">
-                        <input type="" class="form-control mr-1" placeholder="Ketik disini...">
-                        <button class="btn btn-warning">Kirim</button>
-                    </div>
-                </div>
             </div>
-
         </div>
     </div>
 </div>
