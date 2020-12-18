@@ -9,6 +9,11 @@ use App\Event;
 
 class EventsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     /**
      * Display a listing of the resource.
      *
@@ -38,8 +43,21 @@ class EventsController extends Controller
      */
     public function store(Request $request)
     {
-        Event::create($request->all());
-        return redirect('/events');
+        if($request->title == null)
+        {
+            alert()->warning('Harap isi seluruh form', 'Warning !!!');
+            return redirect()->back();
+        }
+        elseif($request->content == null)
+        {
+            alert()->warning('Harap isi seluruh form', 'Warning !!!');
+            return redirect()->back();
+        }
+        else
+        {
+            Event::create($request->all());
+            return redirect('/events');
+        }
     }
 
     /**
@@ -73,11 +91,24 @@ class EventsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $data = Event::findOrFail($id);
-        $data->title = $request->get('title');
-        $data->content = $request->get('content');
-        $data->save();
-        return redirect('events');
+        if($request->title == null)
+        {
+            alert()->warning('Harap isi seluruh form', 'Warning !!!');
+            return redirect()->back();
+        }
+        elseif($request->content == null)
+        {
+            alert()->warning('Harap isi seluruh form', 'Warning !!!');
+            return redirect()->back();
+        }
+        else
+        {
+            $data = Event::findOrFail($id);
+            $data->title = $request->get('title');
+            $data->content = $request->get('content');
+            $data->save();
+            return redirect('events');
+        }
     }
 
     /**

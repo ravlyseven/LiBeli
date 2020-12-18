@@ -13,7 +13,7 @@
                     <div class="row">
                         
                         <div class="col-lg-6 d-none d-lg-block">
-                            <img class="rounded mx-auto d-block" style="width:100%;" src="{{ asset('images/wortel.jpeg') }}">
+                            <img class="rounded mx-auto d-block" style="width:80%;" src="{{ asset('images/libeli.png') }}">
                         </div>
 
                         <div class="col-lg-6">

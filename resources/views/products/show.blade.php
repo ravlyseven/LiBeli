@@ -25,9 +25,10 @@
                   <div class="position-relative form-group">
                     <div class="h5 mb-1 text-s font-weight-bold text-light">Nama Toko : 
                       <a href="{{ url('profile') }}/{{ $product->user_id }}" class="h5 mb-1 text-s font-weight-bold text-light">
-                      {{$product->user->name}}
-                    </a>
+                      {{$product->user->name}}</a>
                     </div>
+                    
+                    <p class="text-warning">note : sementara pengiriman hanya berlaku untuk area terdekat</p>
                   </div>
                 </div>
               </div>

@@ -4,11 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-//use App\model untuk connect ke model
 use App\Update;
+use UxWeb\SweetAlert\SweetAlert;
 
 class UpdatesController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     /**
      * Display a listing of the resource.
      *
@@ -38,8 +43,21 @@ class UpdatesController extends Controller
      */
     public function store(Request $request)
     {
-        Update::create($request->all());
-        return redirect('/updates');
+        if($request->title == null)
+        {
+            alert()->warning('Harap isi seluruh form', 'Warning !!!');
+            return redirect()->back();
+        }
+        elseif($request->content == null)
+        {
+            alert()->warning('Harap isi seluruh form', 'Warning !!!');
+            return redirect()->back();
+        }
+        else
+        {
+            Update::create($request->all());
+            return redirect('/updates');
+        }
     }
 
     /**
@@ -73,11 +91,24 @@ class UpdatesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $data = Update::findOrFail($id);
-        $data->title = $request->get('title');
-        $data->content = $request->get('content');
-        $data->save();
-        return redirect('updates');
+        if($request->title == null)
+        {
+            alert()->warning('Harap isi seluruh form', 'Warning !!!');
+            return redirect()->back();
+        }
+        elseif($request->content == null)
+        {
+            alert()->warning('Harap isi seluruh form', 'Warning !!!');
+            return redirect()->back();
+        }
+        else
+        {
+            $data = Update::findOrFail($id);
+            $data->title = $request->get('title');
+            $data->content = $request->get('content');
+            $data->save();
+            return redirect('updates');
+        }
     }
 
     /**

@@ -18,7 +18,7 @@
                         <input type="text" class="form-control" id="name" value="{{$product->name}}" name="name">
                     </div>
                     <div class="form-group">
-                        <label for="price">Harga Produk</label>
+                        <label for="price">Harga Produk + 5%</label>
                         <input type="number" class="form-control" id="price" value="{{$product->price}}" name="price">
                     </div>
                     <div class="form-group">

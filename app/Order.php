@@ -16,4 +16,8 @@ class Order extends Model
     {
         return $this->belongsTo('App\User', 'user_id');
     }
+    public function seller()
+    {
+        return $this->belongsTo('App\User', 'seller_id');
+    }
 }

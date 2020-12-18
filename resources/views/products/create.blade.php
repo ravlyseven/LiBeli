@@ -17,8 +17,8 @@
                         <input type="text" class="form-control" id="name" placeholder="name" name="name">
                     </div>
                     <div class="form-group">
-                        <label for="price">Harga Produk</label>
-                        <input type="number" class="form-control" id="price" placeholder="price" name="price">
+                        <label for="price">Harga Produk + 5%</label>
+                        <input type="number" class="form-control" id="price" placeholder="Pastikan harga sudah ditambah biaya admin 5%" name="price">
                     </div>
                     <div class="form-group">
                         <label for="stock">Stok Produk</label>

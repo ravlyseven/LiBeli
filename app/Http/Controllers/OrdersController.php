@@ -34,18 +34,33 @@ class OrdersController extends Controller
             alert()->warning('Jumlah stok melebihi ketersediaan', 'Warning !!!');
             return redirect('products/'.$id);
         }
+        
+        // cek inputan jumlah lebih dari 0
+        if ($request->total_order < 1) 
+        {
+            alert()->warning('Jumlah order minimal 1', 'Warning !!!');
+            return redirect('products/'.$id);
+        }
 
-        // cek validasi
+        // cek validasi apakah sudah ada keranjang
         $orders_check = Order::where('user_id', Auth::user()->id)->where('status',0)->first();
         if($orders_check == null) 
         {
             // simpan ke database orders
             $orders = new Order;
             $orders->user_id = Auth::user()->id;
+            $orders->seller_id = $product->user_id;
             $orders->status = 0;
             $orders->total_price = 0;
-            $orders->code = mt_rand(0, 999);
+            $orders->code = mt_rand(0, 99);
             $orders->save();
+        }
+
+        // cek validasi apakah produk berasal dari toko yang sama
+        elseif($orders_check->seller_id != $product->user_id)
+        {
+            alert()->warning('Keranjang harus berisi produk dari toko yang sama', 'Warning !!!');
+            return redirect()->back();
         }
 
         // simpan ke database order_details
@@ -89,6 +104,14 @@ class OrdersController extends Controller
         $order->update();
 
         $order_detail->delete();
+        
+        // menghapus semua keranjang
+        $order_details = Order_Detail::where('order_id', $order_detail->order_id)->count();
+        if($order_details == null)
+        {
+            $order->delete();
+        }
+
         return redirect('orders');
     }
 

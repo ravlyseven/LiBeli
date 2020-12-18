@@ -19,6 +19,7 @@
                     <tr>
                         <th>No</th>
                         <th>Tanggal</th>
+                        <th>Nama Toko</th>
                         <th>Nama Pelanggan</th>
                         <th>Total Harga</th>
                         <th>Status</th>
@@ -32,6 +33,7 @@
                     <tr>
                         <td>{{ $no++ }}</td>
                         <td>{{ $order->updated_at }}</td>
+                        <td>{{ $order->seller->name }}</td>
                         <td>{{ $order->user->name }}</td>
                         <td align="left">Rp. {{ number_format($order->total_price+$order->code) }}</td>
                         <td>

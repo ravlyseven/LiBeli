@@ -24,7 +24,7 @@ class HistoryController extends Controller
             {
                 if ($role_user->role_id == 2)
                 {
-                    $orders = Order::where('status', '!=', 0)->get();
+                    $orders = Order::where('seller_id', Auth::user()->id)->where('status', '!=', 0)->get();
                 }
             }
         }
