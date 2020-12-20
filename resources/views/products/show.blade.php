@@ -39,6 +39,7 @@
                     <h1 class="h3 font-weight-bold text-gray-900 mb-2">{{$product->name}}</h1>
                     <h1 class="h4 mb-0 font-weight-bold text-gray-800">Rp. {{ number_format($product->price) }}</h1>
                     <h1 class="h4 mb-0 font-weight-bold text-gray-800">Stok : {{ $product->stock }}</h1>
+                    <h1 class="h4 mb-0 font-weight-bold text-gray-800">Berat : {{ $product->weight }} gram</h1>
                     <hr>
                     <h1 class="h4 mb-0 font-weight-bold text-gray-800">Deskripsi Produk</h1>
                     <p class="mb-4">{{$product->description}}</p>

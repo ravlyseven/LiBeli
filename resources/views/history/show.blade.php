@@ -14,6 +14,7 @@
 
     <div class="mt-3">
     @if($order->status == 1)
+        <h3 class="text-dark text-center font-weight-bold">Terimakasih Silahkan Lakukan Pembayaran</h3>
         <img class="rounded mx-auto d-block" width="30%;" src="{{ asset('images/rekening.jpeg') }}">
     
     @elseif($order->status == 2)
@@ -66,9 +67,19 @@
                         <td class="font-weight-bold" align="left">Rp. {{ number_format($order->code) }}</td>
                     </tr>
                     <tr>
-                        <td class="font-weight-bold" colspan="5" align="right">Total Yang Harus Dibayar</td>
-                        <td class="font-weight-bold" align="left">Rp. {{ number_format($order->total_price+$order->code) }}</td>
+                        <td class="font-weight-bold" colspan="5" align="right">Ongkir ({{ $order->total_weight }} gram)</td>
+                        <td class="font-weight-bold" align="left">Rp. {{ number_format($order->ongkir) }}</td>
                     </tr>
+                    <tr>
+                        <td class="font-weight-bold" colspan="5" align="right">Total Yang Harus Dibayar</td>
+                        <td class="font-weight-bold" align="left">Rp. {{ number_format($order->total_price + $order->code + $order->ongkir) }}</td>
+                    </tr>
+                    @if(\Auth::user()->hasAnyRole('penjual'))
+                    <tr>
+                        <td class="font-weight-bold" colspan="5" align="right">Biaya Admin</td>
+                        <td class="font-weight-bold" align="left">Rp. {{ number_format($order->total_price*5/105) }}</td>
+                    </tr>
+                    @endif
                 </tbody>
             </table>
             <div class="card shadow mb-4">

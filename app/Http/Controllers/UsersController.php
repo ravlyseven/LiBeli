@@ -19,10 +19,13 @@ class UsersController extends Controller
         $users = User::all();
         foreach($users as $user)
         {
-            if($request->email == $user->email)
+            if($user->id != Auth::user()->id)
             {
-                alert()->warning('Email telah digunakan pengguna lain', 'Warning !!!');
-                return back();
+                if($request->email == $user->email)
+                {
+                    alert()->warning('Email telah digunakan pengguna lain', 'Warning !!!');
+                    return back();
+                }
             }
         }
         
@@ -36,15 +39,40 @@ class UsersController extends Controller
             alert()->warning('Harap isi seluruh form', 'Warning !!!');
             return back();
         }
-        else
+        elseif($request->phone == null)
         {
-            $id = Auth::user()->id;
-            $data = User::findOrFail($id);
-            $data->name = $request->get('name');
-            $data->email = $request->get('email');
-            $data->save();
+            alert()->warning('Harap isi seluruh form', 'Warning !!!');
             return back();
         }
+        elseif($request->kecamatan == null)
+        {
+            alert()->warning('Harap isi seluruh form', 'Warning !!!');
+            return back();
+        }
+        elseif($request->address == null)
+        {
+            alert()->warning('Harap isi seluruh form', 'Warning !!!');
+            return back();
+        }
+        elseif($request->gender == null)
+        {
+            alert()->warning('Harap isi seluruh form', 'Warning !!!');
+            return back();
+        }
+
+
+        $id = Auth::user()->id;
+        $data = User::findOrFail($id);
+        $data->name = $request->get('name');
+        $data->email = $request->get('email');
+        $data->phone = $request->get('phone');
+        $data->kecamatan = $request->get('kecamatan');
+        $data->address = $request->get('address');
+        $data->gender = $request->get('gender');
+        $data->save();
+
+        alert()->success('Data Berhasil Diperbarui', 'Sukses');
+        return back();
     }
 
     public function update_password(Request $request)
@@ -53,6 +81,8 @@ class UsersController extends Controller
         $data = User::findOrFail($id);
         $data->password = bcrypt($request->get('password'));
         $data->save();
+
+        alert()->success('Password Berhasil Diperbarui', 'Sukses');
         return back();
     }
 }

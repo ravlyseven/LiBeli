@@ -26,6 +26,10 @@
                         <input type="number" class="form-control" id="stock" value="{{$product->stock}}" name="stock">
                     </div>
                     <div class="form-group">
+                        <label for="weight">Berat Produk (gram)</label>
+                        <input type="number" class="form-control" id="weight" value="{{$product->weight}}" name="weight">
+                    </div>
+                    <div class="form-group">
                         <label for="photo">Foto Produk</label>
                         <input type="file" class="form-control" id="photo" placeholder="photo" name="photo" style="height:45px;">
                     </div>
@@ -33,7 +37,8 @@
                         <label for="description">Deskripsi</label>
                         <textarea type="text" class="form-control" id="description" value="" name="description" style="height: 150px; overflow: auto;">{{$product->description}}</textarea>
                     </div>
-                    <button type="submit" class="btn btn-primary">Selesai</button>
+                    <button type="submit" class="btn btn-primary">Simpan</button>
+                    <a class="btn btn-danger" href="{{ url('products') }}">Kembali</a>
                 </form>
 				
 		

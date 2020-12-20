@@ -24,7 +24,7 @@
                         <input type="file" class="form-control" id="photo" placeholder="photo" name="photo" style="height:45px;">
                     </div>
                     
-                    <button type="submit" class="btn btn-primary">Selesai</button>
+                    <button type="submit" class="btn btn-primary">Simpan</button>
                 </form>
 				@endif
 

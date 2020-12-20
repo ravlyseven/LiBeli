@@ -13,7 +13,7 @@
     @foreach($updates as $update)
         <div class="container">
             <div class="row">
-                <div class="card" style="width: 100rem;">
+                <div class="card mb-3" style="width: 100rem;">
                     <div class="card-body">
                         <h5 class="card-title">{{$update->title}}</h5>
                         <p class="card-text">{!! Str::words($update->content) !!}

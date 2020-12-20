@@ -37,7 +37,7 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        alert()->basic('Selamat Datang di LiBeli', 'Halo');
+        alert()->basic('Anda Berhasil Registrasi Akun', 'Selamat');
         $this->middleware('guest');
     }
 
@@ -68,6 +68,10 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'phone' => $data['phone'],
+            'kecamatan' => $data['kecamatan'],
+            'address' => $data['address'],
+            'gender' => $data['gender'],
         ]);
     }
 }

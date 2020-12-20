@@ -52,6 +52,8 @@ class OrdersController extends Controller
             $orders->seller_id = $product->user_id;
             $orders->status = 0;
             $orders->total_price = 0;
+            $orders->total_weight = 0;
+            $orders->ongkir = 0;
             $orders->code = mt_rand(0, 99);
             $orders->save();
         }
@@ -75,6 +77,7 @@ class OrdersController extends Controller
             $order_details->order_id = $new_orders->id;
             $order_details->quantity = $request->total_order;
             $order_details->total_price = $product->price*$order_details->quantity;
+            $order_details->total_weight = $product->weight*$order_details->quantity;
             $order_details->save();
         }
         else
@@ -83,15 +86,26 @@ class OrdersController extends Controller
 
             $order_details->quantity = $order_details->quantity+$request->total_order;
             $order_details->total_price = $product->price*$order_details->quantity;
+            $order_details->total_weight = $product->weight*$order_details->quantity;
             $order_details->update();
         }
 
         // jumlah total harga
         $orders = Order::where('user_id', Auth::user()->id)->where('status',0)->first();
-        $orders->total_price = $orders->total_price+$product->price*$request->total_order;
+        $orders->total_price = $orders->total_price + $product->price * $request->total_order;
+        $orders->total_weight = $orders->total_weight + $product->weight * $request->total_order;
+        $cek = 0;
+        $cek_ongkir = 0;
+        while ($cek == 0) 
+        {
+            $cek_ongkir++;
+            if($orders->total_weight <= $cek_ongkir * 1000 + 300)
+            {
+                $orders->ongkir = $cek_ongkir * 6000;
+                $cek = 1;
+            }    
+        }
         $orders->update();
-
-
         return redirect()->back();
     }
     
@@ -100,7 +114,8 @@ class OrdersController extends Controller
         $order_detail = Order_Detail::where('id', $id)->first();
         $order = Order::where('id', $order_detail->order_id)->first();
 
-        $order->total_price = $order->total_price-$order_detail->total_price;
+        $order->total_price = $order->total_price - $order_detail->total_price;
+        $order->total_weight = $order->total_weight - $order_detail->total_weight;
         $order->update();
 
         $order_detail->delete();

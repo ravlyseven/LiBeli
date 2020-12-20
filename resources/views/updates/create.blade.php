@@ -17,6 +17,14 @@
                         <input type="text" class="form-control" id="title" placeholder="title" name="title">
                     </div>
                     <div class="form-group">
+                        <label for="sumber">Sumber</label>
+                        <input type="text" class="form-control" id="sumber" placeholder="sumber" name="sumber">
+                    </div>
+                    <div class="form-group">
+                        <label for="photo">Foto Berita</label>
+                        <input type="file" class="form-control" id="photo" placeholder="photo" name="photo" style="height:45px;">
+                    </div>
+                    <div class="form-group">
                         <label for="content">Content</label>
                         <textarea type="text" class="form-control" id="content" placeholder="content" name="content" style="height:250px;"></textarea>
                         <!-- <input type="text" class="form-control" id="content" placeholder="" name="content" style=""> -->

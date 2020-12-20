@@ -35,7 +35,7 @@
                         <td>{{ $order->updated_at }}</td>
                         <td>{{ $order->seller->name }}</td>
                         <td>{{ $order->user->name }}</td>
-                        <td align="left">Rp. {{ number_format($order->total_price+$order->code) }}</td>
+                        <td align="left">Rp. {{ number_format($order->total_price + $order->code + $order->ongkir) }}</td>
                         <td>
                             @if($order->status == 1)
                             Belum Dibayar

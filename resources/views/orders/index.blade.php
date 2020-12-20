@@ -50,6 +50,10 @@
                     @endforeach
 
                     <tr>
+                        <td colspan="5" align="right">Total Berat</td>
+                        <td align="left">{{ $orders->total_weight }} gram</td>
+                    </tr>
+                    <tr>
                         <td colspan="5" align="right">Total Harga</td>
                         <td align="left">Rp. {{ number_format($orders->total_price) }}</td>
                         <td>

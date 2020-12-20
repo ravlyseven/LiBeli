@@ -19,6 +19,7 @@ class CreateOrderDetailsTable extends Migration
             $table->integer('order_id');
             $table->integer('total');
             $table->integer('total_price');
+            $table->integer('total_weight');
             $table->timestamps();
         });
     }

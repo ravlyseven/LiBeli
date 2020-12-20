@@ -53,11 +53,19 @@ class UpdatesController extends Controller
             alert()->warning('Harap isi seluruh form', 'Warning !!!');
             return redirect()->back();
         }
-        else
+
+        $data = new Update;
+        $data->title = $request->title;
+        $data->content = $request->content;
+        $data->sumber = $request->sumber;
+        if($request->hasFile('photo'))
         {
-            Update::create($request->all());
-            return redirect('/updates');
+            $photo = $request->file('photo')->store('news', 'public');
+            $data->photo = $photo;
         }
+        $data->save;
+        
+        return redirect('/updates');
     }
 
     /**
@@ -104,8 +112,17 @@ class UpdatesController extends Controller
         else
         {
             $data = Update::findOrFail($id);
-            $data->title = $request->get('title');
-            $data->content = $request->get('content');
+            $data->title = $request->title;
+            $data->content = $request->content;
+            $data->sumber = $request->sumber;
+            if($request->hasFile('photo'))
+            {
+                if ($data->photo && file_exists(storage_path('app/public/'.$data->photo))) {
+                    Storage::delete('public', $data->photo);
+                }
+                $photo = $request->file('photo')->store('news', 'public');
+                $data->photo = $photo;
+            }
             $data->save();
             return redirect('updates');
         }

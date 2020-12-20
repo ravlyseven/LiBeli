@@ -16,6 +16,7 @@
                 <div class="p-5">
                   <div class="text-center">
                     <h1 class="h3 font-weight-bold text-gray-900 mb-2">{{$update->title}}</h1>
+                    <p>Sumber : {{$update->sumber}}</p>
                     <hr>
                     <p class="mb-4">{{$update->content}}</p>
                     <hr>

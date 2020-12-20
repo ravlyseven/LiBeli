@@ -25,6 +25,10 @@
                         <input type="number" class="form-control" id="stock" placeholder="stock" name="stock">
                     </div>
                     <div class="form-group">
+                        <label for="weight">Berat Produk (gram)</label>
+                        <input type="number" class="form-control" id="weight" placeholder="weight" name="weight">
+                    </div>
+                    <div class="form-group">
                         <label for="photo">Foto Produk</label>
                         <input type="file" class="form-control" id="photo" placeholder="photo" name="photo" style="height:45px;">
                     </div>
@@ -33,6 +37,7 @@
                         <textarea type="text" class="form-control" id="description" placeholder="description" name="description" style="height: 150px; overflow: auto;"></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary">Tambah Data</button>
+                    <a class="btn btn-danger" href="{{ url('products') }}">Kembali</a>
                 </form>
 				
 		

@@ -20,6 +20,8 @@ class CreateOrdersTable extends Migration
             $table->integer('status');
             $table->integer('code');
             $table->integer('total_price');
+            $table->integer('total_weight');
+            $table->integer('ongkir');
             $table->string('photo')->nullable();
             $table->timestamps();
         });

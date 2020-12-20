@@ -40,6 +40,34 @@
                         </div>
 
                         <div class="form-group row">
+                            <label class="col-md-4 col-form-label text-md-right">Phone Number</label>
+                            <div class="col-md-6">
+                                <input name="phone" id="phone" value="{{ old('phone') }}" type="number" class="form-control">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group row">
+                            <label class="col-md-4 col-form-label text-md-right">Kecamatan</label>
+                            <div class="col-md-6">
+                                <input name="kecamatan" id="kecamatan" value="{{ old('kecamatan') }}" type="text" class="form-control">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-md-4 col-form-label text-md-right">Address</label>
+                            <div class="col-md-6">
+                                <input name="address" id="address" value="{{ old('address') }}" type="text" class="form-control">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-md-4 col-form-label text-md-right">Gender</label>
+                            <div class="col-md-6">
+                                <input name="gender" id="gender" value="{{ old('gender') }}" type="text" class="form-control">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
                             <div class="col-md-6">
