@@ -30,10 +30,9 @@
 
       <!-- Sidebar - Brand -->
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ url('home') }}">
-        <div class="sidebar-brand-icon rotate-n-15">
-          <i class="fas fa-laugh-wink"></i>
+        <div class="sidebar-brand-icon">
+          <img class="mx-auto d-block" style="width:50%;" src="{{ asset('images/libeli.png') }}">
         </div>
-        <div class="sidebar-brand-text mx-3">Libeli</div>
       </a>
 
       <!-- Divider -->
@@ -171,21 +170,35 @@
                 </a>
                 <!-- Dropdown - User Information -->
                 <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                  
                   <a class="dropdown-item" href="{{ url('profile') }}">
                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                     Profile
                   </a>
 
+                  <!-- @if(\Auth::user()->hasAnyRole('penjual'))
+                  @elseif(\Auth::user()->hasAnyRole('admin'))
+                  @else
                   <div class="dropdown-divider"></div>
+
+                  <a class="dropdown-item" href="">
+                    <i class="far fa-address-card"></i> Daftar Menjadi Seller
+                  </a>
+                  @endif -->
+                  
+                  <div class="dropdown-divider"></div>
+
                   <a class="dropdown-item" href="{{ url('history') }}">
                     <i class="fa fa-shopping-cart text-gray-400"></i> Riwayat Pemesanan
                   </a>
 
                   <div class="dropdown-divider"></div>
+
                   <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                     Logout
                   </a>
+
                 </div>
               </li>
             @endguest

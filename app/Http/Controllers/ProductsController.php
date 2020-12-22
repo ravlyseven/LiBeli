@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use App\Product;
 use Illuminate\Support\Facades\Auth;
 use UxWeb\SweetAlert\SweetAlert;
@@ -97,6 +98,7 @@ class ProductsController extends Controller
         $data->description = $request->get('description');
         if($request->hasFile('photo'))
         {
+            $this->validate($request, ['photo' => 'required|image|mimes:jpeg,jpg,png,gif']);
             $photo = $request->file('photo')->store('products', 'public');
             $data->photo = $photo;
         }
@@ -189,6 +191,7 @@ class ProductsController extends Controller
         $data->description = $request->get('description');
         if($request->hasFile('photo'))
         {
+            $this->validate($request, ['photo' => 'required|image|mimes:jpeg,jpg,png,gif']);
             if ($data->photo && file_exists(storage_path('app/public/'.$data->photo))) {
                 Storage::delete('public', $data->photo);
             }

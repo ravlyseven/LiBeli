@@ -17,6 +17,11 @@
                   <div class="text-center">
                     <h1 class="h3 font-weight-bold text-gray-900 mb-2">{{$event->title}}</h1>
                     <hr>
+                    <p class="mb-4">{{$event->penyelenggara}}</p>
+                    <a href="{{ $event->link }}">{{ $event->link }}</a>
+                    <hr>
+                    <img class="img-thumbnail" src="{{ asset('storage/'.$event->photo) }}">
+                    <hr>
                     <p class="mb-4">{{$event->content}}</p>
                     <hr>
                     <a class="btn btn-primary" href="{{ url('events') }}">Kembali</a>

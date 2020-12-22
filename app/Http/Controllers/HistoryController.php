@@ -64,6 +64,7 @@ class HistoryController extends Controller
 
         if($request->hasFile('photo'))
         {
+            $this->validate($request, ['photo' => 'required|image|mimes:jpeg,jpg,png,gif']);
             if ($order->photo && file_exists(storage_path('app/public/'.$order->photo))) {
                 Storage::delete('public', $order->photo);
             }

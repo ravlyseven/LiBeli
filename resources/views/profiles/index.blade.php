@@ -48,7 +48,9 @@
                 </div>
             </div>
         </div>
+
         <div class="col-md-6">
+
             <div class="main-card mb-3 card">
                 <div class="card-body">
                     <h5 class="card-title">Password</h5>
@@ -67,8 +69,23 @@
                     </form>
                 </div>
             </div>
+            
+            <div class="main-card mb-3 card">
+                <div class="card-body">
+                    <h5 class="card-title">Bisa Kirim?</h5>
+                    <form method="POST" action="{{ url('profile_cod') }}">
+                        @csrf                           
+                            @if(\Auth::user()->hasAnyRole('penjual'))
+                                @if(Auth::user()->cod == 0)
+                                    <button class="mt-1 btn btn-primary" type="submit">Ya</button>
+                                @else
+                                    <button class="mt-1 btn btn-primary" type="submit">Tidak</button>
+                                @endif
+                            @endif
+                    </form>
+                </div>
+            </div>
+
         </div>
-
-
     </div>
 @endsection

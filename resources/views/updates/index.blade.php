@@ -15,7 +15,8 @@
             <div class="row">
                 <div class="card mb-3" style="width: 100rem;">
                     <div class="card-body">
-                        <h5 class="card-title">{{$update->title}}</h5>
+                        <h5 class="card-title">{{ $update->title }}</h5>
+                        <p class="card-text">Sumber : {{ $update->sumber }}</p>
                         <p class="card-text">{!! Str::words($update->content) !!}
                         <a href="updates/{{ $update->id }}">selengkapnya</a>
                         </p>

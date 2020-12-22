@@ -12,8 +12,8 @@
                     <!-- Nested Row within Card Body -->
                     <div class="row">
                         
-                        <div class="col-lg-6 d-none d-lg-block">
-                            <img class="rounded mx-auto d-block" style="width:80%;" src="{{ asset('images/libeli.png') }}">
+                        <div class="col-lg-6 d-none d-lg-block bg-primary">
+                            <img class="mx-auto d-block mt-5" style="width:80%;" src="{{ asset('images/libeli.png') }}">
                         </div>
 
                         <div class="col-lg-6">

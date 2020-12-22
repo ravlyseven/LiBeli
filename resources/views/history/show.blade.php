@@ -68,7 +68,11 @@
                     </tr>
                     <tr>
                         <td class="font-weight-bold" colspan="5" align="right">Ongkir ({{ $order->total_weight }} gram)</td>
+                        @if($order->ongkir == 0)
+                        <td class="font-weight-bold" align="left">Ambil Di Toko Penjual</td>
+                        @else
                         <td class="font-weight-bold" align="left">Rp. {{ number_format($order->ongkir) }}</td>
+                        @endif
                     </tr>
                     <tr>
                         <td class="font-weight-bold" colspan="5" align="right">Total Yang Harus Dibayar</td>

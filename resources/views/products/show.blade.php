@@ -28,7 +28,7 @@
                       {{$product->user->name}}</a>
                     </div>
                     
-                    <p class="text-warning">note : sementara pengiriman hanya berlaku untuk area terdekat</p>
+                    <p class="text-warning">note : sementara pengiriman hanya berlaku untuk area terdekat max 5km</p>
                   </div>
                 </div>
               </div>

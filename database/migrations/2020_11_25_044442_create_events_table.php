@@ -17,6 +17,9 @@ class CreateEventsTable extends Migration
             $table->bigIncrements('id');
             $table->string('title');
             $table->string('content');
+            $table->string('penyelenggara');
+            $table->string('photo');
+            $table->string('link');
             $table->timestamps();
         });
     }

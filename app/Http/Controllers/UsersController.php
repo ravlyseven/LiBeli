@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\User;
+use App\Role;
+use App\Role_User;
 use UxWeb\SweetAlert\SweetAlert;
 
 class UsersController extends Controller
@@ -83,6 +85,40 @@ class UsersController extends Controller
         $data->save();
 
         alert()->success('Password Berhasil Diperbarui', 'Sukses');
+        return back();
+    }
+    
+    public function cod(Request $request)
+    {
+        $id = Auth::user()->id;
+        $data = User::findOrFail($id);
+        if ($data->cod == 0) 
+        {
+            $data->cod = 1;
+            alert()->warning('Tidak Terima Pengiriman', 'Awas !');
+        }
+        else
+        {
+            $data->cod = 0;
+            alert()->success('Bisa Kirim', 'Selamat !');
+        }
+        $data->save();
+
+        return back();
+    }
+
+    public function role($id)
+    {
+        $role_user = Role_User::where('user_id', $id)->first();
+
+        if($role_user == null)
+        {
+            $data = new Role_User;
+            $data->user_id = $id;
+            $data->role_id = 2;
+            $data->save();
+        }
+
         return back();
     }
 }

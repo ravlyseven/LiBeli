@@ -18,6 +18,8 @@
                     <h1 class="h3 font-weight-bold text-gray-900 mb-2">{{$update->title}}</h1>
                     <p>Sumber : {{$update->sumber}}</p>
                     <hr>
+                    <img class="img-thumbnail" src="{{ asset('storage/'.$update->photo) }}">
+                    <hr>
                     <p class="mb-4">{{$update->content}}</p>
                     <hr>
                     <a class="btn btn-primary" href="{{ url('updates') }}">Kembali</a>

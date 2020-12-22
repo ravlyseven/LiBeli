@@ -24,6 +24,8 @@ Route::resource('products', 'ProductsController');
 Route::get('/profile', 'UsersController@show');
 Route::post('/profile', 'UsersController@update');
 Route::post('/profile_password', 'UsersController@update_password');
+Route::post('/profile_cod', 'UsersController@cod');
+Route::post('/profile_role/{id}', 'UsersController@role');
 
 Route::get('profile/{id}', 'ProfilesController@toko');
 

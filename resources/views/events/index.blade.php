@@ -15,7 +15,8 @@
             <div class="row">
                 <div class="card mb-3" style="width: 100rem;">
                     <div class="card-body">
-                        <h5 class="card-title">{{$event->title}}</h5>
+                        <h5 class="card-title">{{ $event->title }}</h5>
+                        <p class="card-text">Penyelenggara : {{ $event->penyelenggara }}</p>
                         <p class="card-text">{!! Str::words($event->content) !!}
                         <a href="events/{{ $event->id }}">selengkapnya</a></p>
 

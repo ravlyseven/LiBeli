@@ -94,16 +94,23 @@ class OrdersController extends Controller
         $orders = Order::where('user_id', Auth::user()->id)->where('status',0)->first();
         $orders->total_price = $orders->total_price + $product->price * $request->total_order;
         $orders->total_weight = $orders->total_weight + $product->weight * $request->total_order;
-        $cek = 0;
-        $cek_ongkir = 0;
-        while ($cek == 0) 
+        if ($orders->seller->cod == 1) 
         {
-            $cek_ongkir++;
-            if($orders->total_weight <= $cek_ongkir * 1000 + 300)
+            $orders->ongkir = 0;
+        }
+        else
+        {
+            $cek = 0;
+            $cek_ongkir = 0;
+            while ($cek == 0) 
             {
-                $orders->ongkir = $cek_ongkir * 6000;
-                $cek = 1;
-            }    
+                $cek_ongkir++;
+                if($orders->total_weight <= $cek_ongkir * 1000 + 300)
+                {
+                    $orders->ongkir = $cek_ongkir * 6000;
+                    $cek = 1;
+                }    
+            }
         }
         $orders->update();
         return redirect()->back();
@@ -133,17 +140,27 @@ class OrdersController extends Controller
     public function checkout()
     {
         $order = Order::where('user_id', Auth::user()->id)->where('status',0)->first();
-        $order->status = 1;
-        $order->update();
-
+        
         $order_details = Order_Detail::where('order_id', $order->id)->get();
         foreach ($order_details as $order_detail)
         {
             $product = Product::where('id', $order_detail->product_id)->first();
+            
+            if($product->stock < $order_detail->quantity)
+            {
+                alert()->warning('Jumlah stok melebihi ketersediaan saat ini', 'Warning !!!');
+                $order_detail->quantity = $product->stock;
+                $order_detail->update();
+
+                return redirect()->back();
+            }
+            
             $product->stock = $product->stock-$order_detail->quantity;
             $product->update();
         }
-
+        $order->status = 1;
+        $order->update();
+        
         return redirect('history');
     }
 }

@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Update extends Model
 {
-    protected $fillable = ['title', 'content'];
+    protected $fillable = ['title', 'content', 'sumber', 'photo'];
 }

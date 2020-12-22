@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use App\Update;
 use UxWeb\SweetAlert\SweetAlert;
 
@@ -53,18 +54,25 @@ class UpdatesController extends Controller
             alert()->warning('Harap isi seluruh form', 'Warning !!!');
             return redirect()->back();
         }
+        elseif($request->sumber == null)
+        {
+            alert()->warning('Harap isi seluruh form', 'Warning !!!');
+            return redirect()->back();
+        }
 
-        $data = new Update;
+        $data = new Update();
         $data->title = $request->title;
         $data->content = $request->content;
         $data->sumber = $request->sumber;
         if($request->hasFile('photo'))
         {
+            $this->validate($request, ['photo' => 'required|image|mimes:jpeg,jpg,png,gif']);
+
             $photo = $request->file('photo')->store('news', 'public');
             $data->photo = $photo;
         }
-        $data->save;
-        
+        $data->save();
+        alert()->success('Create Success', 'Create News');
         return redirect('/updates');
     }
 
@@ -117,6 +125,8 @@ class UpdatesController extends Controller
             $data->sumber = $request->sumber;
             if($request->hasFile('photo'))
             {
+                $this->validate($request, ['photo' => 'required|image|mimes:jpeg,jpg,png,gif']);
+
                 if ($data->photo && file_exists(storage_path('app/public/'.$data->photo))) {
                     Storage::delete('public', $data->photo);
                 }
@@ -124,6 +134,7 @@ class UpdatesController extends Controller
                 $data->photo = $photo;
             }
             $data->save();
+            alert()->success('Update Success', 'Update News');
             return redirect('updates');
         }
     }
@@ -138,6 +149,7 @@ class UpdatesController extends Controller
     public function destroy(Update $update)
     {
         Update::destroy($update->id);
+        alert()->success('Delete Success', 'Delete News');
         return redirect('/updates')->with('status', 'Data Berhasil Dihapus');
     }
 }

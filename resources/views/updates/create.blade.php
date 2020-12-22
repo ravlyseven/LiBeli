@@ -10,7 +10,7 @@
 			<div class="col-10">
 				<h1 class="mt-3">Tambah Data News</h1>
                 
-                <form method="post" action="/updates">
+                <form method="post" action="/updates" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
                         <label for="title">Title</label>
@@ -26,7 +26,7 @@
                     </div>
                     <div class="form-group">
                         <label for="content">Content</label>
-                        <textarea type="text" class="form-control" id="content" placeholder="content" name="content" style="height:250px;"></textarea>
+                        <textarea type="text" class="form-control" id="content" placeholder="content" name="content" style="height:100px;"></textarea>
                         <!-- <input type="text" class="form-control" id="content" placeholder="" name="content" style=""> -->
                     </div>
                     <button type="submit" class="btn btn-primary">Tambah Data</button>

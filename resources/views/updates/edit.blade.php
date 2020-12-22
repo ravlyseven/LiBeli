@@ -10,7 +10,7 @@
 			<div class="col-10">
 				<h1 class="mt-3">Update Data News</h1>
                 
-                <form method="post" action="/updates/{{ $update->id }}">
+                <form method="post" action="/updates/{{ $update->id }}" enctype="multipart/form-data">
                 @method('PUT')
                     @csrf
                     <div class="form-group">
@@ -27,7 +27,7 @@
                     </div>
                     <div class="form-group">
                         <label for="content">Content</label>
-                        <textarea type="text" class="form-control" id="content" value="" name="content" style="height:250px;">{{$update->content}}</textarea>
+                        <textarea type="text" class="form-control" id="content" value="" name="content" style="height:100px;">{{$update->content}}</textarea>
                     </div>
                     <button type="submit" class="btn btn-primary">Update Data</button>
                 </form>

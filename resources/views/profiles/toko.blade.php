@@ -9,9 +9,10 @@
         <div class="col-md-6">
             <div class="main-card mb-3 card">
                 <div class="card-body">
-                    <h5 class="card-title">Informasi Toko</h5>
+                    <h5 class="card-title font-weight-bold">Informasi Toko !</h5>
                     <div class="position-relative form-group">
-                        <div class="h5 mb-1 text-s font-weight-bold text-primary">Nama : {{$toko->name}}</div>
+                        <div class="h5 mb-1 text-s font-weight-bold text-primary">Nama   : {{$toko->name}}</div>
+                        <div class="h5 mb-1 text-s font-weight-bold text-primary">Alamat : {{$toko->address}}</div>
                     </div>  
                 </div>
             </div>
