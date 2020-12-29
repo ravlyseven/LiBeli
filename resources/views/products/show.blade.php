@@ -52,11 +52,16 @@
                       <i class="fa fa-shopping-cart"></i>Tambah Ke Keranjang</button>
                     </form>
 
-                    @if(\Auth::user()->hasAnyRole('penjual'))
-                    <a class="btn btn-primary" href="{{ url('products') }}">Kembali</a>
+                    @guest
+                      <a class="btn btn-primary" href="{{ url('home') }}">Kembali</a>
                     @else
-                    <a class="btn btn-primary" href="{{ url('home') }}">Kembali</a>
-                    @endif
+                      @if(\Auth::user()->hasAnyRole('penjual'))
+                      <a class="btn btn-primary" href="{{ url('products') }}">Kembali</a>
+                      @else
+                      <a class="btn btn-primary" href="{{ url('home') }}">Kembali</a>
+                      @endif
+                    @endguest
+                    
                   
                   </div>
                 </div>

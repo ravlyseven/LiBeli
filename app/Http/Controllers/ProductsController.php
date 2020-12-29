@@ -11,16 +11,6 @@ use UxWeb\SweetAlert\SweetAlert;
 
 class ProductsController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-    
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $products = Product::where('user_id', Auth::user()->id)->get();

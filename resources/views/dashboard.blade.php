@@ -20,12 +20,14 @@
                 <div class="col mr-2">
                   <div class="h5 mb-1 text-s font-weight-bold text-primary">{{$user->name}}</div>
                   <div class="h5 mb-1 text-s font-weight-bold text-primary">{{$user->email}}</div>
-                  <div class="h5 mb-1 text-s font-weight-bold text-primary">{{$user->id}}</div>
+                  <div class="h5 mb-1 text-s font-weight-bold text-primary">ID : {{$user->id}}</div>
                   <div class="h5 mb-1 text-s font-weight-bold text-primary">
                     @if($user->hasAnyRole('admin'))
-                      <p class="btn btn-danger">Admin</p>
+                      <p class="btn btn-danger">Admin</p> @endif
+                    @if($user->hasAnyRole('penjual'))
+                      <p class="btn btn-warning">Penjual</p> @endif
+                    @if($user->hasAnyRole('admin'))
                     @elseif($user->hasAnyRole('penjual'))
-                      <p class="btn btn-warning">Penjual</p>
                     @else
                       <form action="{{ url('profile_role') }}/{{ $user->id }}" method="post">
                       @csrf
